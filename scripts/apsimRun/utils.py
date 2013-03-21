@@ -319,6 +319,10 @@ def main(args):
     -------
     Nothing
     '''
+    from time import time
+    from datetime import timedelta
+    
+    startTime = time()
     
     # set variables from command line args
     if len(args) == 2:
@@ -347,7 +351,16 @@ def main(args):
         print 'Archiving .out and .sum files...'
         outputFilenameList = outFileList + sumFileList
         save_output_to_archive(outputFilenameList)
+        
+        # clean up (remove .tmp, .out, and .sum files)
+        print 'Cleaning up...'
+        cleanupFilenameList = glob.glob('*.tmp')
+        cleanupFilenameList += glob.glob('*.out')
+        cleanupFilenameList += glob.glob('*.sum')
+        for filename in cleanupFilenameList:
+            os.remove(filename)
     
+    print 'Total runtime :', str(timedelta(seconds=round(time()-startTime)))
     print '\n***** Done! *****'
 
 # Run main() if module is run as a program

@@ -10,7 +10,7 @@ from time import time
 from Queue import Queue
 import threading
 import multiprocessing as mp
-from datetime import timedelta
+from datetime import timedelta, datetime
 import utils
 
 # get APSIM install directory (where this module is running from)
@@ -235,6 +235,8 @@ def _post_run(conversionRuntime):
     print '\n' + hr
     print 'Run Summary'
     print hr
+    print 'Start time :', str(datetime.fromtimestamp(round(startTime)))
+    print 'End time :', str(datetime.fromtimestamp(round(time())))
     if conversionRuntime != None: print 'Conversion runtime :', conversionRuntime
     print 'Average runtime per simulation :', str(timedelta(seconds=round(old_average)))
     if databaseRuntime != None: print 'Save to database runtime:', databaseRuntime
