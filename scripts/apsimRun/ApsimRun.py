@@ -79,7 +79,7 @@ def _apsim_exe_run(apsimFilenameList):
     '''Converts .apsim files to .sim files.'''
     global apsimFileTotal
     apsimFileTotal = len(apsimFilenameList)
-    print 'Running ApsimToSim.exe for {0} .apsim files...'.format(apsimFileTotal)
+    print 'Running ApsimToSim for {0} .apsim files...'.format(apsimFileTotal)
     
     # add .sim files to Queue
     q = Queue()
@@ -284,6 +284,8 @@ def main(args):
     conversionRuntime = None
     if simFilenameList != []:
         print '** {0} .sim files found!'.format(len(simFilenameList))
+        print 'Running .sim files...'
+        
         # run all sim files in list
         _sim_run(simFilenameList)
     else:

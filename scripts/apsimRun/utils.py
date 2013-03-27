@@ -341,7 +341,7 @@ def main(args):
     if outFileList == []:
         print 'No files found. Aborting.'
     else:
-        print 'Files found:', len(outFileList)
+        print len(outFileList), '.out files found.'
         
         # save .out files to sqlite database
         print 'Saving to SQLite database...'
