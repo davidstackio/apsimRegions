@@ -30,6 +30,7 @@ apsimFileTotal = 1
 old_count = 0
 old_average = 0
 prevPrint = 0
+simRerunAttemps = 0
 startTime = time()
 numCPU = None
 
@@ -117,6 +118,7 @@ def _cb_sim(result, lock, timeOld):
 def _run_sim(simFilename, lock):
     '''Runs a .sim file in APSIM.'''
     global apsimExePath
+    global simRerunAttemps
     timeOld = time()
     sumFilename = simFilename.replace('.sim','.sum')
     tmpFilename = simFilename.replace('.sim','.tmp')
@@ -136,6 +138,14 @@ def _run_sim(simFilename, lock):
         if '100%' in lineList[-1]:
             # delete .sim file after processing
             os.remove(simFilename)
+            simRerunAttemps = 0
+        elif simRerunAttemps < 5:
+            # attempt to re-run sim file at most 5 times
+            _run_sim(simFilename, lock)
+            simRerunAttemps += 1
+        else:
+            print 'Unable to process file :', simFilename
+            simRerunAttemps = 0
     
     _cb_sim(simFilename, lock, timeOld)
     return sumFilename
