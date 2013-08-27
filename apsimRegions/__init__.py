@@ -1,3 +1,8 @@
-from apsimRegions.preprocess.soils import *
-from apsimRegions.preprocess.apsim import *
-from apsimRegions.preprocess.managementRules import *
+"""
+apsimRegions Module
+
+.. moduleauthor:: David Stack <davidhstack@gmail.com>
+
+"""
+
+from apsim import *

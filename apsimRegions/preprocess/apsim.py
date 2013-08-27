@@ -11,8 +11,9 @@
 import os
 import lxml.etree as ET
 
-def new_document(version=None, name=''):
-    '''Craetes a new root document. All inputs have to be strings.'''
+def new_document(version='', name=''):
+    '''Creates a new root document. All inputs have to be strings.'''
+    version = str(version)
     doc = ET.Element('folder', version=version, name=name)
     return doc
 

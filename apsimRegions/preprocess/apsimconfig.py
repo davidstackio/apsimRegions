@@ -5,7 +5,8 @@
 #==============================================================================
 
 import os, posixpath
-from pandas import read_csv
+from pandas import read_csv, DateOffset
+from datetime import datetime
 import apsim, soils
 import managementRules as manager
     
@@ -33,18 +34,18 @@ def setup_soils(element, soilDataPath):
     
 def setup_shared_management_options(folder, crop, config, shortcut=None):
     '''Sets up management options for all simulations.'''
-    harvestDate = config.harvestDate()
+    harvestDate = config.harvestDate
     
     # setup management rules based on crop type
     # some crops require certain rules to work
     if crop == 'maize':
         # fertilise rule
         fertilizeRule = manager.fertOnSoilNCriteria_rule(folder,
-                                                 FertAmtCriteria=config.fertAmtCriteria(),\
-                                                 FertDepthCriteria=config.fertDepthCriteria(),\
-                                                 FertDepth=config.fertDepth(),\
-                                                 FertAmt=config.fertAmt(),\
-                                                 FertType=config.fertType())
+                                                 FertAmtCriteria=config.fertAmtCriteria,\
+                                                 FertDepthCriteria=config.fertDepthCriteria,\
+                                                 FertDepth=config.fertDepth,\
+                                                 FertAmt=config.fertAmt,\
+                                                 FertType=config.fertType)
         # harvesting rule
         if harvestDate == 'auto':
             harvestRule = manager.harvesting_rule(folder, crop)
@@ -68,7 +69,7 @@ def setup_shared_management_options(folder, crop, config, shortcut=None):
         
         rulesList = [(irrigateRule.get('name'),'manager'),\
                      (fertilizeRule.get('name'),'manager2'),\
-                     (harvestRule.get('name'),'manager')]
+                     (harvestRule.get('name'),'manager')]            
     return rulesList
     
 def setup_management_options(folder, crop, config, gridpoint, gridLut, shortcut, rulesList, soil):
@@ -78,11 +79,11 @@ def setup_management_options(folder, crop, config, gridpoint, gridLut, shortcut,
     REMEMBER: order matters!
     '''
     # reset water, nitrogen, and surfaceOM rule
-    manager.reset_on_sowing(folder, crop, soilmodule=soil.get('name'))
+    #manager.reset_on_sowing(folder, crop, soilmodule=soil.get('name'))
     
     # set dates from config file
-    sowStart = config.sowStart()
-    sowEnd = config.sowEnd()
+    sowStart = config.sowStart
+    sowEnd = config.sowEnd
     
     # if sowStart is 'auto', set by location from provided lookup table
     if sowStart == 'auto':
@@ -91,26 +92,32 @@ def setup_management_options(folder, crop, config, gridpoint, gridLut, shortcut,
     # if sowEnd is 'auto', set by location from provided lookup table
     if sowEnd == 'auto':
         sowEnd = gridLut['sow_end'][gridpoint]
+    
+    # end crop on fixed date rule
+    # removes any crop that may be left in the groud 2 days before sowing
+    endDate = datetime.strptime(sowStart, '%d-%b') - DateOffset(2)
+    endDate = datetime.strftime(endDate, '%d-%b')
+    manager.end_crop_on_fixed_date_rule(folder, crop, endDate)
         
     if crop == 'maize':
         # sowing rule
         if sowEnd == '':
             manager.sowOnFixedDate_rule(folder, crop,
                                                 date=sowStart,\
-                                                density=config.density(),\
-                                                depth=config.depth(),\
-                                                cultivar=config.cultivar(),\
-                                                gclass=config.gclass(),\
-                                                row_spacing=config.rowSpacing())
+                                                density=config.density,\
+                                                depth=config.depth,\
+                                                cultivar=config.cultivar,\
+                                                gclass=config.gclass,\
+                                                row_spacing=config.rowSpacing)
         else:
             manager.sowUsingAVariable_rule(folder, crop,
                                                    start_date=sowStart,\
                                                    end_date=sowEnd,\
-                                                   density=config.density(),\
-                                                   depth=config.depth(),\
-                                                   cultivar=config.cultivar(),\
-                                                   gclass=config.gclass(),\
-                                                   row_spacing=config.rowSpacing())
+                                                   density=config.density,\
+                                                   depth=config.depth,\
+                                                   cultivar=config.cultivar,\
+                                                   gclass=config.gclass,\
+                                                   row_spacing=config.rowSpacing)
     elif crop == 'cotton':
         # sowing rule
         if sowEnd == '':
@@ -159,14 +166,14 @@ def new_apsim(outputFileDir, config):
     Name of the .apsim file which was saved to specified directory
     '''
     # set variables from config
-    met = config.met()
-    crop = config.crop()
-    soilDataPath = config.soilDataPath() # used to add soils to main
+    met = config.met
+    crop = config.crop
+    soilDataPath = config.soilDataPath # used to add soils to main
                                          # soil folder
-    metFileDir = config.metFileDir()
+    metFileDir = config.metFileDir
     
     # read grid lookup table
-    gridLut = read_csv(config.gridLutPath(), index_col='point_id')
+    gridLut = read_csv(config.gridLutPath, index_col='point_id')
     
     # begin creating .apsim xml
     projectName = met + '_' + crop
@@ -191,7 +198,7 @@ def new_apsim(outputFileDir, config):
     apsim.new_metfile(simulation, met_path_base)
     
     # clock
-    apsim.new_clock(simulation, config.clockStart(), config.clockEnd())
+    apsim.new_clock(simulation, config.clockStart, config.clockEnd)
     
     # summary file
     apsim.new_summaryfile(simulation, simName_base + '.sum')
@@ -203,27 +210,27 @@ def new_apsim(outputFileDir, config):
     # soil
     soil = select_soil(gridpoint, crop, paddock_base,
                 _new_shortcut(projectName, soilfolder.get('name')),\
-                gridLut['soil_code'], config.soilName())
+                gridLut['soil_code'], config.soilName)
     
     # surface organic matter
     surfaceom_base = apsim.new_surfaceom(paddock_base, crop, 
-                                         mass=config.mass(),\
-                                         cnr=config.cnr(),\
-                                         cpr=config.cpr(),\
-                                         standing_fraction=config.standingFraction())
+                                         mass=config.mass,\
+                                         cnr=config.cnr,\
+                                         cpr=config.cpr,\
+                                         standing_fraction=config.standingFraction)
     surfaceom_base_name = surfaceom_base.get('name')
     
     # irrigation
     irrigation_base = apsim.new_irrigation(paddock_base,
-                                           automatic_irrigation=config.automaticIrrigation(),\
-                                           asw_depth=config.aswDepth(),\
-                                           crit_fr_asw=config.critFrAsw(),\
-                                           irrigation_efficiency=config.irrigationEfficiency(),\
-                                           irrigation_allocation=config.irrigationAllocation(),\
-                                           allocation=config.allocation(),\
-                                           default_no3_conc=config.defaultNo3Conc(),\
-                                           default_nh4_conc=config.defaultNh4Conc(),\
-                                           default_cl_conc=config.defaultClConc())
+                                           automatic_irrigation=config.automaticIrrigation,\
+                                           asw_depth=config.aswDepth,\
+                                           crit_fr_asw=config.critFrAsw,\
+                                           irrigation_efficiency=config.irrigationEfficiency,\
+                                           irrigation_allocation=config.irrigationAllocation,\
+                                           allocation=config.allocation,\
+                                           default_no3_conc=config.defaultNo3Conc,\
+                                           default_nh4_conc=config.defaultNh4Conc,\
+                                           default_cl_conc=config.defaultClConc)
     irrigation_base_name = irrigation_base.get('name')
     
     # fertiliser
@@ -240,10 +247,10 @@ def new_apsim(outputFileDir, config):
                 rulesList, soil)
     
     # output
-    apsim.new_outputfile(paddock_base, config.outputVariables(), config.outputEvents())
+    apsim.new_outputfile(paddock_base, config.outputVariables, config.outputEvents)
     
     # tracker
-    apsim.new_tracker(paddock_base, config.trackerVariables())
+    apsim.new_tracker(paddock_base, config.trackerVariables)
     
     # graph
     #setup_graph_options(paddock_base)
@@ -269,7 +276,7 @@ def new_apsim(outputFileDir, config):
         paddock = apsim.new_area(simulation, shortcut=_new_shortcut(projectName,simName_base,paddock_base_name))
         
         # soil
-        soil = select_soil(gridpoint, crop, paddock, _new_shortcut(projectName, soilfolder_name), gridLut['soil_code'], config.soilName())
+        soil = select_soil(gridpoint, crop, paddock, _new_shortcut(projectName, soilfolder_name), gridLut['soil_code'], config.soilName)
         
         # surface organic matter
         apsim.new_surfaceom(paddock, crop, shortcut=_new_shortcut(projectName,simName_base,paddock_base_name+'/'+surfaceom_base_name))

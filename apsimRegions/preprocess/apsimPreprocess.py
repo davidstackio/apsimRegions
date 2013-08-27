@@ -18,7 +18,7 @@ def _create_apsim_file(runDir, dataPath, config):
     new_apsim(dataPath, config)
     
     # create batch file
-    batch.create_run_batchfile(runDir, config.apsimModelDir())
+    batch.create_run_batchfile(runDir, config.apsimModelDir)
     
 def preprocess_one(configPath):
     '''
