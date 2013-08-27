@@ -1,0 +1,505 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>apsimRegions.preprocess &mdash; ApsimRegions 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="ApsimRegions 0.1 documentation" href="../index.html" />
+    <link rel="up" title="API Reference" href="api.html" />
+    <link rel="prev" title="API Reference" href="api.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../np-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="api.html" title="API Reference"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">ApsimRegions 0.1 documentation</a> &raquo;</li>
+          <li><a href="api.html" accesskey="U">API Reference</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-apsimRegions.preprocess">
+<span id="apsimregions-preprocess"></span><span id="api-apsimregions"></span><h1><a class="reference internal" href="#module-apsimRegions.preprocess" title="apsimRegions.preprocess"><tt class="xref py py-mod docutils literal"><span class="pre">apsimRegions.preprocess</span></tt></a><a class="headerlink" href="#module-apsimRegions.preprocess" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-apsimRegions.preprocess.apsim">
+<span id="apsimregions-preprocess-apsim"></span><h2><a class="reference internal" href="#module-apsimRegions.preprocess.apsim" title="apsimRegions.preprocess.apsim"><tt class="xref py py-mod docutils literal"><span class="pre">apsimRegions.preprocess.apsim</span></tt></a><a class="headerlink" href="#module-apsimRegions.preprocess.apsim" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="apsimRegions.preprocess.apsim.new_area">
+<tt class="descclassname">apsimRegions.preprocess.apsim.</tt><tt class="descname">new_area</tt><big>(</big><em>element</em>, <em>name='paddock'</em>, <em>shortcut=None</em><big>)</big><a class="headerlink" href="#apsimRegions.preprocess.apsim.new_area" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a new area, or paddock.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="apsimRegions.preprocess.apsim.new_clock">
+<tt class="descclassname">apsimRegions.preprocess.apsim.</tt><tt class="descname">new_clock</tt><big>(</big><em>simulation</em>, <em>start=None</em>, <em>end=None</em>, <em>shortcut=None</em><big>)</big><a class="headerlink" href="#apsimRegions.preprocess.apsim.new_clock" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a new clock.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="apsimRegions.preprocess.apsim.new_crop">
+<tt class="descclassname">apsimRegions.preprocess.apsim.</tt><tt class="descname">new_crop</tt><big>(</big><em>element</em>, <em>crop</em>, <em>shortcut=None</em><big>)</big><a class="headerlink" href="#apsimRegions.preprocess.apsim.new_crop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a new crop.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="apsimRegions.preprocess.apsim.new_document">
+<tt class="descclassname">apsimRegions.preprocess.apsim.</tt><tt class="descname">new_document</tt><big>(</big><em>version=None</em>, <em>name=''</em><big>)</big><a class="headerlink" href="#apsimRegions.preprocess.apsim.new_document" title="Permalink to this definition">¶</a></dt>
+<dd><p>Craetes a new root document. All inputs have to be strings.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="apsimRegions.preprocess.apsim.new_fertiliser">
+<tt class="descclassname">apsimRegions.preprocess.apsim.</tt><tt class="descname">new_fertiliser</tt><big>(</big><em>element</em>, <em>shortcut=None</em><big>)</big><a class="headerlink" href="#apsimRegions.preprocess.apsim.new_fertiliser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a new fertiliser.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="apsimRegions.preprocess.apsim.new_folder">
+<tt class="descclassname">apsimRegions.preprocess.apsim.</tt><tt class="descname">new_folder</tt><big>(</big><em>element</em>, <em>name=''</em>, <em>shortcut=None</em><big>)</big><a class="headerlink" href="#apsimRegions.preprocess.apsim.new_folder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a new folder.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="apsimRegions.preprocess.apsim.new_graph">
+<tt class="descclassname">apsimRegions.preprocess.apsim.</tt><tt class="descname">new_graph</tt><big>(</big><em>element</em>, <em>plotX='x'</em>, <em>plotY='y'</em>, <em>name='XY'</em>, <em>seriestype='Solid line'</em>, <em>pointtype='Circle'</em>, <em>color=None</em>, <em>shortcut=None</em><big>)</big><a class="headerlink" href="#apsimRegions.preprocess.apsim.new_graph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a new graph.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="apsimRegions.preprocess.apsim.new_irrigation">
+<tt class="descclassname">apsimRegions.preprocess.apsim.</tt><tt class="descname">new_irrigation</tt><big>(</big><em>element</em>, <em>name='Irrigation'</em>, <em>automatic_irrigation='on'</em>, <em>asw_depth='600'</em>, <em>crit_fr_asw='0.5'</em>, <em>irrigation_efficiency='1'</em>, <em>irrigation_allocation='off'</em>, <em>allocation='0'</em>, <em>default_no3_conc='0.0'</em>, <em>default_nh4_conc='0.0'</em>, <em>default_cl_conc='0.0'</em>, <em>shortcut=None</em><big>)</big><a class="headerlink" href="#apsimRegions.preprocess.apsim.new_irrigation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a new irrigation.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="apsimRegions.preprocess.apsim.new_management_rule">
+<tt class="descclassname">apsimRegions.preprocess.apsim.</tt><tt class="descname">new_management_rule</tt><big>(</big><em>element</em>, <em>rulename</em>, <em>ruleType</em>, <em>shortcut</em><big>)</big><a class="headerlink" href="#apsimRegions.preprocess.apsim.new_management_rule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a new managment rule shortcut to name.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="apsimRegions.preprocess.apsim.new_metfile">
+<tt class="descclassname">apsimRegions.preprocess.apsim.</tt><tt class="descname">new_metfile</tt><big>(</big><em>simulation</em>, <em>path</em>, <em>name='met'</em>, <em>shortcut=None</em><big>)</big><a class="headerlink" href="#apsimRegions.preprocess.apsim.new_metfile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a new metfile.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="apsimRegions.preprocess.apsim.new_outputfile">
+<tt class="descclassname">apsimRegions.preprocess.apsim.</tt><tt class="descname">new_outputfile</tt><big>(</big><em>element</em>, <em>outputVariables=</em><span class="optional">[</span><span class="optional">]</span>, <em>outputEvents=</em><span class="optional">[</span><span class="optional">]</span>, <em>name_outputfile='outputfile'</em>, <em>shortcut=None</em><big>)</big><a class="headerlink" href="#apsimRegions.preprocess.apsim.new_outputfile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a new outputfile.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="apsimRegions.preprocess.apsim.new_simulation">
+<tt class="descclassname">apsimRegions.preprocess.apsim.</tt><tt class="descname">new_simulation</tt><big>(</big><em>doc</em>, <em>name=None</em>, <em>shortcut=None</em><big>)</big><a class="headerlink" href="#apsimRegions.preprocess.apsim.new_simulation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a new simulation.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="apsimRegions.preprocess.apsim.new_soil">
+<tt class="descclassname">apsimRegions.preprocess.apsim.</tt><tt class="descname">new_soil</tt><big>(</big><em>element</em>, <em>crop</em>, <em>soilName=None</em>, <em>shortcut=None</em><big>)</big><a class="headerlink" href="#apsimRegions.preprocess.apsim.new_soil" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a new soil.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="apsimRegions.preprocess.apsim.new_summaryfile">
+<tt class="descclassname">apsimRegions.preprocess.apsim.</tt><tt class="descname">new_summaryfile</tt><big>(</big><em>simulation</em>, <em>path=None</em>, <em>shortcut=None</em><big>)</big><a class="headerlink" href="#apsimRegions.preprocess.apsim.new_summaryfile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a new summary file.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="apsimRegions.preprocess.apsim.new_surfaceom">
+<tt class="descclassname">apsimRegions.preprocess.apsim.</tt><tt class="descname">new_surfaceom</tt><big>(</big><em>element</em>, <em>crop</em>, <em>name='surface organic matter'</em>, <em>mass='1000.'</em>, <em>cnr='80.0'</em>, <em>cpr=''</em>, <em>standing_fraction='0.0'</em>, <em>shortcut=None</em><big>)</big><a class="headerlink" href="#apsimRegions.preprocess.apsim.new_surfaceom" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a new surface organic matter.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="apsimRegions.preprocess.apsim.new_tracker">
+<tt class="descclassname">apsimRegions.preprocess.apsim.</tt><tt class="descname">new_tracker</tt><big>(</big><em>element</em>, <em>trackerVariables=</em><span class="optional">[</span><span class="optional">]</span>, <em>name='tracker'</em>, <em>shortcut=None</em><big>)</big><a class="headerlink" href="#apsimRegions.preprocess.apsim.new_tracker" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a new tracker.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="apsimRegions.preprocess.apsim.save_file">
+<tt class="descclassname">apsimRegions.preprocess.apsim.</tt><tt class="descname">save_file</tt><big>(</big><em>doc</em>, <em>filename</em>, <em>outputFileDir</em><big>)</big><a class="headerlink" href="#apsimRegions.preprocess.apsim.save_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates pretty apsim xml and saves file.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-apsimRegions.preprocess.apsimconfig">
+<span id="apsimregions-preprocess-apsimconfig"></span><h2><a class="reference internal" href="#module-apsimRegions.preprocess.apsimconfig" title="apsimRegions.preprocess.apsimconfig"><tt class="xref py py-mod docutils literal"><span class="pre">apsimRegions.preprocess.apsimconfig</span></tt></a><a class="headerlink" href="#module-apsimRegions.preprocess.apsimconfig" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="apsimRegions.preprocess.apsimconfig.new_apsim">
+<tt class="descclassname">apsimRegions.preprocess.apsimconfig.</tt><tt class="descname">new_apsim</tt><big>(</big><em>outputFileDir</em>, <em>config</em><big>)</big><a class="headerlink" href="#apsimRegions.preprocess.apsimconfig.new_apsim" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a new apsim file in directory outputFileDir writing
+the metFileDir to each file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>outputFileDir</strong> : string</p>
+<blockquote>
+<div><p>path to save .apsim files to</p>
+</div></blockquote>
+<p><strong>config</strong> : Config object from fileio module</p>
+<blockquote>
+<div><p>configuration settings for the run.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first last"><strong>Name of the .apsim file which was saved to specified directory</strong> :</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="apsimRegions.preprocess.apsimconfig.select_soil">
+<tt class="descclassname">apsimRegions.preprocess.apsimconfig.</tt><tt class="descname">select_soil</tt><big>(</big><em>gridpoint</em>, <em>crop</em>, <em>element</em>, <em>shortcutroot</em>, <em>soilLut</em>, <em>soilName</em><big>)</big><a class="headerlink" href="#apsimRegions.preprocess.apsimconfig.select_soil" title="Permalink to this definition">¶</a></dt>
+<dd><p>Chooses soil to use based on grid cell.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="apsimRegions.preprocess.apsimconfig.setup_graph_options">
+<tt class="descclassname">apsimRegions.preprocess.apsimconfig.</tt><tt class="descname">setup_graph_options</tt><big>(</big><em>element</em><big>)</big><a class="headerlink" href="#apsimRegions.preprocess.apsimconfig.setup_graph_options" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets up graphing options for all simulations.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="apsimRegions.preprocess.apsimconfig.setup_management_options">
+<tt class="descclassname">apsimRegions.preprocess.apsimconfig.</tt><tt class="descname">setup_management_options</tt><big>(</big><em>folder</em>, <em>crop</em>, <em>config</em>, <em>gridpoint</em>, <em>gridLut</em>, <em>shortcut</em>, <em>rulesList</em>, <em>soil</em><big>)</big><a class="headerlink" href="#apsimRegions.preprocess.apsimconfig.setup_management_options" title="Permalink to this definition">¶</a></dt>
+<dd><p>Setup management rules based on grid cell.</p>
+<p>REMEMBER: order matters!</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="apsimRegions.preprocess.apsimconfig.setup_met">
+<tt class="descclassname">apsimRegions.preprocess.apsimconfig.</tt><tt class="descname">setup_met</tt><big>(</big><em>met</em>, <em>metFileDir</em>, <em>gridpoint</em><big>)</big><a class="headerlink" href="#apsimRegions.preprocess.apsimconfig.setup_met" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a met filename for inclusion in .apsim file.</p>
+<p>example item: &#8216;WRF_00979.met&#8217;.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="apsimRegions.preprocess.apsimconfig.setup_project">
+<tt class="descclassname">apsimRegions.preprocess.apsimconfig.</tt><tt class="descname">setup_project</tt><big>(</big><em>projectName</em><big>)</big><a class="headerlink" href="#apsimRegions.preprocess.apsimconfig.setup_project" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets up project options for all simulations.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="apsimRegions.preprocess.apsimconfig.setup_shared_management_options">
+<tt class="descclassname">apsimRegions.preprocess.apsimconfig.</tt><tt class="descname">setup_shared_management_options</tt><big>(</big><em>folder</em>, <em>crop</em>, <em>config</em>, <em>shortcut=None</em><big>)</big><a class="headerlink" href="#apsimRegions.preprocess.apsimconfig.setup_shared_management_options" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets up management options for all simulations.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="apsimRegions.preprocess.apsimconfig.setup_soils">
+<tt class="descclassname">apsimRegions.preprocess.apsimconfig.</tt><tt class="descname">setup_soils</tt><big>(</big><em>element</em>, <em>soilDataPath</em><big>)</big><a class="headerlink" href="#apsimRegions.preprocess.apsimconfig.setup_soils" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets up soils for all simulations.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="apsimregions-preprocess-apsimregions-preprocess">
+<h2><tt class="xref py py-mod docutils literal"><span class="pre">apsimRegions.preprocess.apsimRegions.preprocess</span></tt><a class="headerlink" href="#apsimregions-preprocess-apsimregions-preprocess" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-apsimRegions.preprocess.batch">
+<span id="apsimregions-preprocess-batch"></span><h2><a class="reference internal" href="#module-apsimRegions.preprocess.batch" title="apsimRegions.preprocess.batch"><tt class="xref py py-mod docutils literal"><span class="pre">apsimRegions.preprocess.batch</span></tt></a><a class="headerlink" href="#module-apsimRegions.preprocess.batch" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="apsimRegions.preprocess.batch.create_run_all_batchfile">
+<tt class="descclassname">apsimRegions.preprocess.batch.</tt><tt class="descname">create_run_all_batchfile</tt><big>(</big><em>outputDir</em>, <em>runs</em>, <em>experimentName</em><big>)</big><a class="headerlink" href="#apsimRegions.preprocess.batch.create_run_all_batchfile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a windows batchfile that runs all the other previously
+created batchfiles in each run folder.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>outputDir</strong> : string</p>
+<blockquote>
+<div><p>directory where .bat files will be saved</p>
+</div></blockquote>
+<p><strong>runs</strong> : dictionary</p>
+<blockquote>
+<div><p>the keys are run numbers and the values are the varibales</p>
+</div></blockquote>
+<p><strong>experimentName</strong> : string</p>
+<blockquote>
+<div><p>name to save .bat file as</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first last"><strong>Nothing</strong> :</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="apsimRegions.preprocess.batch.create_run_batchfile">
+<tt class="descclassname">apsimRegions.preprocess.batch.</tt><tt class="descname">create_run_batchfile</tt><big>(</big><em>runDir</em>, <em>apsimModelDir</em><big>)</big><a class="headerlink" href="#apsimRegions.preprocess.batch.create_run_batchfile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a windows batch file to run apsim using ApsimRun.py.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>runDir</strong> : string</p>
+<blockquote>
+<div><p>directory where to save .bat file</p>
+</div></blockquote>
+<p><strong>apsimModelDir</strong> : string</p>
+<blockquote>
+<div><p>directory of apsim model where ApsimRun.py is located</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first last"><strong>Nothing</strong> :</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="apsimregions-preprocess-configmaker">
+<h2><tt class="xref py py-mod docutils literal"><span class="pre">apsimRegions.preprocess.configMaker</span></tt><a class="headerlink" href="#apsimregions-preprocess-configmaker" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-apsimRegions.preprocess.fileio">
+<span id="apsimregions-preprocess-fileio"></span><h2><a class="reference internal" href="#module-apsimRegions.preprocess.fileio" title="apsimRegions.preprocess.fileio"><tt class="xref py py-mod docutils literal"><span class="pre">apsimRegions.preprocess.fileio</span></tt></a><a class="headerlink" href="#module-apsimRegions.preprocess.fileio" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-apsimRegions.preprocess.managementRules">
+<span id="apsimregions-preprocess-mangementrules"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">apsimRegions.preprocess.mangementRules</span></tt><a class="headerlink" href="#module-apsimRegions.preprocess.managementRules" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="apsimRegions.preprocess.managementRules.cotton_fixed_date_sowing_rule">
+<tt class="descclassname">apsimRegions.preprocess.managementRules.</tt><tt class="descname">cotton_fixed_date_sowing_rule</tt><big>(</big><em>folder</em>, <em>crop</em>, <em>name='Cotton fixed date sowing rule'</em>, <em>shortcut=None</em>, <em>date=''</em>, <em>density='10'</em>, <em>depth='30'</em>, <em>cultivar='siok'</em>, <em>row_spacing='1000'</em>, <em>occurrence='start_of_day'</em><big>)</big><a class="headerlink" href="#apsimRegions.preprocess.managementRules.cotton_fixed_date_sowing_rule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rule for sowing cotton on a fixed date.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="apsimRegions.preprocess.managementRules.cotton_sowing_rule">
+<tt class="descclassname">apsimRegions.preprocess.managementRules.</tt><tt class="descname">cotton_sowing_rule</tt><big>(</big><em>folder</em>, <em>crop</em>, <em>name='Cotton sowing rule'</em>, <em>shortcut=None</em>, <em>start_date=''</em>, <em>end_date=''</em>, <em>must_sow='yes'</em>, <em>raincrit='30'</em>, <em>rainnumdays='3'</em>, <em>esw_amount='200'</em>, <em>density='10'</em>, <em>depth='30'</em>, <em>cultivar='siok'</em>, <em>row_spacing='1000'</em>, <em>skiprow='0'</em>, <em>occurrence='start_of_day'</em><big>)</big><a class="headerlink" href="#apsimRegions.preprocess.managementRules.cotton_sowing_rule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rule for sowing cotton in a date range.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="apsimRegions.preprocess.managementRules.fertOnSoilNCriteria_rule">
+<tt class="descclassname">apsimRegions.preprocess.managementRules.</tt><tt class="descname">fertOnSoilNCriteria_rule</tt><big>(</big><em>folder</em>, <em>name='FertOnSoilNCriteria'</em>, <em>shortcut=None</em>, <em>FertAmtCriteria='50'</em>, <em>FertDepthCriteria='75'</em>, <em>FertDepth='50'</em>, <em>FertAmt='25'</em>, <em>FertType='urea_n'</em><big>)</big><a class="headerlink" href="#apsimRegions.preprocess.managementRules.fertOnSoilNCriteria_rule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rule for when to apply fertilizer with Manager 2.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="apsimRegions.preprocess.managementRules.harvest_on_fixed_date_rule">
+<tt class="descclassname">apsimRegions.preprocess.managementRules.</tt><tt class="descname">harvest_on_fixed_date_rule</tt><big>(</big><em>folder</em>, <em>crop</em>, <em>harvestDate='1-jan'</em>, <em>name='End crop on a fixed date'</em>, <em>shortcut=None</em><big>)</big><a class="headerlink" href="#apsimRegions.preprocess.managementRules.harvest_on_fixed_date_rule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rule for harvesting on a fixed date.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>folder</strong> : element tree object</p>
+<blockquote>
+<div><p>node to attach rule to</p>
+</div></blockquote>
+<p><strong>crop</strong> : string</p>
+<blockquote>
+<div><p>crop to harvest</p>
+</div></blockquote>
+<p><strong>harvestDate</strong> : string (dd-mmm)</p>
+<blockquote>
+<div><p>(optional) date to harvest crop</p>
+</div></blockquote>
+<p><strong>name</strong> : string</p>
+<blockquote>
+<div><p>(optional) name of component to display in APSIM gui</p>
+</div></blockquote>
+<p><strong>shortcut</strong> : string</p>
+<blockquote>
+<div><p>(optional) shortcut to link to</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first last"><strong>The management rule.</strong> :</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="apsimRegions.preprocess.managementRules.harvesting_rule">
+<tt class="descclassname">apsimRegions.preprocess.managementRules.</tt><tt class="descname">harvesting_rule</tt><big>(</big><em>folder</em>, <em>crop</em>, <em>name='Harvesting rule'</em>, <em>shortcut=None</em><big>)</big><a class="headerlink" href="#apsimRegions.preprocess.managementRules.harvesting_rule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rule for when to harvest the crop.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="apsimRegions.preprocess.managementRules.irrigate_on_sw_deficit_rule">
+<tt class="descclassname">apsimRegions.preprocess.managementRules.</tt><tt class="descname">irrigate_on_sw_deficit_rule</tt><big>(</big><em>folder</em>, <em>name='irrigate at sw deficit'</em>, <em>shortcut=None</em>, <em>trigger='50'</em>, <em>occurrence='start_of_day'</em><big>)</big><a class="headerlink" href="#apsimRegions.preprocess.managementRules.irrigate_on_sw_deficit_rule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rule for when to irrigate, and under what conditions.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="apsimRegions.preprocess.managementRules.reset_on_fixed_date">
+<tt class="descclassname">apsimRegions.preprocess.managementRules.</tt><tt class="descname">reset_on_fixed_date</tt><big>(</big><em>folder</em>, <em>crop</em>, <em>soilmodule</em>, <em>reset_date</em>, <em>name='Reset water</em>, <em>nitrogen and surfaceOM on fixed date'</em>, <em>shortcut=None</em>, <em>surfaceommodule='surface organic matter'</em>, <em>resetWater='yes'</em>, <em>resetNitrogen='yes'</em>, <em>resetSurfaceOM='yes'</em>, <em>occurrence='start_of_day'</em><big>)</big><a class="headerlink" href="#apsimRegions.preprocess.managementRules.reset_on_fixed_date" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resets water, nitrogen, and surfaceOM on a fixed date.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns :</th><td class="field-body"><strong>The management rule.</strong> :</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="apsimRegions.preprocess.managementRules.sowOnFixedDate_rule">
+<tt class="descclassname">apsimRegions.preprocess.managementRules.</tt><tt class="descname">sowOnFixedDate_rule</tt><big>(</big><em>folder</em>, <em>crop</em>, <em>name='Sow on a fixed date'</em>, <em>shortcut=None</em>, <em>date='1-jan'</em>, <em>density='10'</em>, <em>depth='50'</em>, <em>cultivar=''</em>, <em>gclass='plant'</em>, <em>row_spacing='500'</em>, <em>occurrence='start_of_day'</em><big>)</big><a class="headerlink" href="#apsimRegions.preprocess.managementRules.sowOnFixedDate_rule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rule for sowing on fixed date.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="apsimRegions.preprocess.managementRules.sowUsingAVariable_rule">
+<tt class="descclassname">apsimRegions.preprocess.managementRules.</tt><tt class="descname">sowUsingAVariable_rule</tt><big>(</big><em>folder</em>, <em>crop</em>, <em>name='Sow using a variable rule'</em>, <em>shortcut=None</em>, <em>start_date=''</em>, <em>end_date=''</em>, <em>must_sow='yes'</em>, <em>raincrit='30'</em>, <em>rainnumdays='3'</em>, <em>esw_amount='200'</em>, <em>density='3'</em>, <em>depth='50'</em>, <em>cultivar='usa_18leaf'</em>, <em>gclass='plant'</em>, <em>row_spacing='250'</em>, <em>occurrence='start_of_day'</em><big>)</big><a class="headerlink" href="#apsimRegions.preprocess.managementRules.sowUsingAVariable_rule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rule for sowing on a variable date.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="apsimRegions.preprocess.managementRules.sowingFertiliser_rule">
+<tt class="descclassname">apsimRegions.preprocess.managementRules.</tt><tt class="descname">sowingFertiliser_rule</tt><big>(</big><em>folder</em>, <em>name='Sowing fertiliser'</em>, <em>shortcut=None</em>, <em>eventname='sowing'</em>, <em>fertiliser='fertiliser'</em>, <em>fert_amount_sow='150'</em>, <em>fert_type_sow='urea_N'</em><big>)</big><a class="headerlink" href="#apsimRegions.preprocess.managementRules.sowingFertiliser_rule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rule for when to apply fertilizer.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-apsimRegions.preprocess.soils">
+<span id="apsimregions-preprocess-soils"></span><h2><a class="reference internal" href="#module-apsimRegions.preprocess.soils" title="apsimRegions.preprocess.soils"><tt class="xref py py-mod docutils literal"><span class="pre">apsimRegions.preprocess.soils</span></tt></a><a class="headerlink" href="#module-apsimRegions.preprocess.soils" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="apsimRegions.preprocess.soils.add_soils">
+<tt class="descclassname">apsimRegions.preprocess.soils.</tt><tt class="descname">add_soils</tt><big>(</big><em>element</em>, <em>filename</em><big>)</big><a class="headerlink" href="#apsimRegions.preprocess.soils.add_soils" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds all soils in filename to element.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>element</strong> : lxml element tree element</p>
+<blockquote>
+<div><p>element to add soils to</p>
+</div></blockquote>
+<p><strong>filename</strong> : string</p>
+<blockquote>
+<div><p>filename to parse</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns :</th><td class="field-body"><p class="first last"><strong>Nothing</strong> :</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#"><tt class="docutils literal"><span class="pre">apsimRegions.preprocess</span></tt></a><ul>
+<li><a class="reference internal" href="#module-apsimRegions.preprocess.apsim"><tt class="docutils literal"><span class="pre">apsimRegions.preprocess.apsim</span></tt></a></li>
+<li><a class="reference internal" href="#module-apsimRegions.preprocess.apsimconfig"><tt class="docutils literal"><span class="pre">apsimRegions.preprocess.apsimconfig</span></tt></a></li>
+<li><a class="reference internal" href="#apsimregions-preprocess-apsimregions-preprocess"><tt class="docutils literal"><span class="pre">apsimRegions.preprocess.apsimRegions.preprocess</span></tt></a></li>
+<li><a class="reference internal" href="#module-apsimRegions.preprocess.batch"><tt class="docutils literal"><span class="pre">apsimRegions.preprocess.batch</span></tt></a></li>
+<li><a class="reference internal" href="#apsimregions-preprocess-configmaker"><tt class="docutils literal"><span class="pre">apsimRegions.preprocess.configMaker</span></tt></a></li>
+<li><a class="reference internal" href="#module-apsimRegions.preprocess.fileio"><tt class="docutils literal"><span class="pre">apsimRegions.preprocess.fileio</span></tt></a></li>
+<li><a class="reference internal" href="#module-apsimRegions.preprocess.managementRules"><tt class="docutils literal"><span class="pre">apsimRegions.preprocess.mangementRules</span></tt></a></li>
+<li><a class="reference internal" href="#module-apsimRegions.preprocess.soils"><tt class="docutils literal"><span class="pre">apsimRegions.preprocess.soils</span></tt></a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="api.html"
+                        title="previous chapter">API Reference</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/api/api_apsimRegions.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../np-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="api.html" title="API Reference"
+             >previous</a> |</li>
+        <li><a href="../index.html">ApsimRegions 0.1 documentation</a> &raquo;</li>
+          <li><a href="api.html" >API Reference</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, David Stack.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+    </div>
+  </body>
+</html>

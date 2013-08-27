@@ -203,9 +203,9 @@ def harvesting_rule(folder, crop, name='Harvesting rule', shortcut=None):
         rule = ET.SubElement(folder, 'manager', name=name, shortcut=shortcut+'/'+name)
     return rule
 
-def harvest_on_fixed_date_rule(folder, crop, harvestDate='1-jan', name='End crop on a fixed date', shortcut=None):
+def end_crop_on_fixed_date_rule(folder, crop, harvestDate='1-jan', name='End crop on a fixed date', shortcut=None):
     '''
-    Rule for harvesting on a fixed date.
+    Rule for ending a crop on a fixed date.
     
     Parameters
     ----------
@@ -399,6 +399,54 @@ def reset_on_fixed_date(folder, crop, soilmodule, reset_date, name='Reset water,
          endif
            '''
         ET.SubElement(script, 'event').text = occurrence
+    else:
+        rule = ET.SubElement(folder, 'manager', name=name, shortcut=shortcut+'/'+name)
+    return rule
+
+def reset_on_sowing(folder, crop, soilmodule, name='Reset water, nitrogen and surfaceOM on sowing', shortcut=None, surfaceommodule='surface organic matter', resetWater='yes', resetNitrogen='yes', resetSurfaceOM='yes', eventname='sowing'):
+    '''
+    Resets water, nitrogen, and surfaceOM on sowing.
+    
+    Parameters
+    ----------
+    
+    Returns
+    -------
+    The management rule.
+    '''
+    if shortcut == None:
+        rule = ET.SubElement(folder, 'manager', name=name)
+        
+        ui = ET.SubElement(rule, 'ui')
+        ET.SubElement(ui, 'category', type='category', description="When should a reset be done")
+        ET.SubElement(ui, 'modulename', type='modulename', description="The module the event is to come from : ").text = crop
+        ET.SubElement(ui, 'eventname', type='text', description="On which event should a reset be done : ").text = eventname
+        ET.SubElement(ui, 'category', type='category', description="Reset details")
+        ET.SubElement(ui, 'soilmodule', type='modulename', description="Name of your soil module : ").text = soilmodule
+        ET.SubElement(ui, 'surfaceommodule', type='modulename', description="Name of your surface organic matter module : ").text = surfaceommodule
+        ET.SubElement(ui, 'resetWater', type='yesno', description="Reset soil water?").text = resetWater
+        ET.SubElement(ui, 'resetNitrogen', type='yesno', description="Reset soil nitrogen?").text = resetNitrogen
+        ET.SubElement(ui, 'resetSurfaceOM', type='yesno', description="Reset surface organic matter?").text = resetSurfaceOM
+        
+        script = ET.SubElement(rule, 'script')
+        ET.SubElement(script, 'text').text = '''
+            resetWater = '[resetWater]'
+            resetNitrogen  = '[resetNitrogen]'
+            resetSurfaceOM = '[resetSurfaceOM]'
+            if (resetWater = 'yes') then
+                '[soilmodule] Water' reset
+            endif
+            if (resetNitrogen = 'yes') then
+                '[soilmodule] Nitrogen' reset
+            endif
+            if (resetSurfaceOM = 'yes') then
+                '[surfaceommodule]' reset
+            endif
+            if (resetWater = 'yes' or resetNitrogen = 'yes' or resetSurfaceOM = 'yes') then
+               act_mods reseting
+            endif
+           '''
+        ET.SubElement(script, 'event').text = '[modulename].[eventname]'
     else:
         rule = ET.SubElement(folder, 'manager', name=name, shortcut=shortcut+'/'+name)
     return rule
