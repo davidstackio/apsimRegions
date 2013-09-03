@@ -2,11 +2,6 @@
 
 Tutorial
 ********
-
-<<<<<<< HEAD
-Coming soon...
-
-=======
 Required Software
 =================
 - `Apsim 7.4 <http://www.apsim.info/>`_
@@ -52,4 +47,3 @@ Post Process
 5.	Edit the figures.py file, changing settings to produce the figures desired.
     a.	_setup_axis(): map parameters
     b.	Timeseries(): timesereies parameters
->>>>>>> origin/Operational
