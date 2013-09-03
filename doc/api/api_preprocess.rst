@@ -19,10 +19,10 @@
 .. automodule:: apsimRegions.preprocess.apsimconfig
    :members:
    
-:mod:`apsimRegions.preprocess.apsimRegions.preprocess`
+:mod:`apsimRegions.preprocess.apsimPreprocess`
 ======================================================
 
-.. automodule:: apsimRegions.preprocess.apsimRegions.preprocess
+.. automodule:: apsimRegions.preprocess.apsimPreprocess
    :members:
    
 :mod:`apsimRegions.preprocess.batch`
