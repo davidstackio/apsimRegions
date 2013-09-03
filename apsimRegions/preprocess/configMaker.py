@@ -63,14 +63,13 @@ def _setup_run_dir(outputPath):
     
     return configPath, run
     
-def create_config_file(configPath, resolution='32', crop='maize', \
+def create_config_file(configPath, gridLutPath, metFileDir, \
+                        resolution='32', crop='maize', \
                         clockStart='1/1/1991', clockEnd='31/12/2011', \
                         model='NARR', sowStart='auto', soilName='auto',\
                         mass='1000.0', cnr='80.0', cpr='', \
                         standing_fraction='0.0', automatic_irrigation='on', \
-                        asw_depth='600', crit_fr_asw='0.95',\
-                        gridLutPath='C:/Users/David/Dropbox/NIFA Project - David/apsim-regions/trunk/lookupTables/noWater_grid_lut_%(resolution)skm.csv',\
-                        metFileDir='E:/EaSM_Project/metfiles/working/%(met)s'):
+                        asw_depth='600', crit_fr_asw='0.95'):
     '''
     Saves an apsimRegions configuration file.
     
@@ -78,6 +77,10 @@ def create_config_file(configPath, resolution='32', crop='maize', \
     ----------
     configPath : string
         path of where configuration file is to be saved
+    gridLutPath : string
+        path to grid lookup table
+    metFileDir : string
+        directory where metfiles are located
     resolution : int or string
         (optional) resolution of simulation
     crop : string
@@ -107,10 +110,6 @@ def create_config_file(configPath, resolution='32', crop='maize', \
         (optional) depth at which available soil water is calculated
     crit_fr_asw : float or string
         (optional) threshold to irrigate at
-    gridLutPath : string
-        (optional) path to grid lookup table
-    metFileDir : string
-        (optinal) directory where metfiles are located
         
     Returns
     -------
