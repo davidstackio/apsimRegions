@@ -3,6 +3,7 @@
 
 Welcome to ApsimRegions's documentation!
 ****************************************
+The apsimRegions is a suite of software tools designed to extend the point-specific Agricultural Production Systems sIMulator (APSIM) crop model to regional spatial scales.
 
 Contents
 ========
@@ -11,6 +12,7 @@ Contents
    :maxdepth: 2
    
    intro.rst
+   download.rst
    tutorial.rst
    api/api.rst
 
