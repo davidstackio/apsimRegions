@@ -1,8 +1,8 @@
 .. ApsimRegions documentation master file, created by
    sphinx-quickstart on Wed Aug 14 16:38:29 2013.
 
-Welcome to ApsimRegions's documentation!
-****************************************
+Welcome to the ApsimRegions documentation!
+******************************************
 The apsimRegions is a suite of software tools designed to extend the point-specific Agricultural Production Systems sIMulator (APSIM) crop model to regional spatial scales.
 
 Contents
