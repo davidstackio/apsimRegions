@@ -129,7 +129,7 @@ def create_config_file(configPath, gridLutPath, metFileDir, \
     config.set('DEFAULT', 'gridLutPath', gridLutPath)
     config.set('DEFAULT', 'crop', str(crop))
     config.set('DEFAULT', 'model', str(model))
-    config.set('DEFAULT', 'met','%(model)s%(resolution)s')
+    config.set('DEFAULT', 'met','%(model)s')
     
     # ------------
     # preprocessor
