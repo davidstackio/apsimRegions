@@ -82,7 +82,7 @@ def _apsim_exe_run(apsimFilenameList):
     apsimFileTotal = len(apsimFilenameList)
     print 'Running ApsimToSim for {0} .apsim files...'.format(apsimFileTotal)
     
-    # add .sim files to Queue
+    # add .apsim files to Queue
     q = Queue()
     for apsimFilename in apsimFilenameList:
         q.put_nowait(apsimFilename)
