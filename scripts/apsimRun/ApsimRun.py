@@ -208,7 +208,7 @@ def _post_run(conversionRuntime):
         archiveRuntime = None
     elif outFileList == []:
         print '*** Warning: No .out files found.'
-        # add .out and .sum files to archive
+        # add .sum files to archive
         print 'Archiving .sum files...'
         timeOld = time()
         sumFileList = glob.glob('*.sum')
