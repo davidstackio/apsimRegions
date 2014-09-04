@@ -64,12 +64,16 @@ def _setup_run_dir(outputPath):
     return configPath, run
     
 def create_config_file(configPath, gridLutPath, metFileDir, \
+                        apsimModelDir='C:/Program Files (x86)/Apsim74-r2286/Model',\
+                        soilDataPath='C:/Program Files (x86)/Apsim74-r2286/UserInterface/ToolBoxes/hc27_v1_1.soils',\
                         resolution='32', crop='maize', \
                         clockStart='1/1/1991', clockEnd='31/12/2011', \
                         model='NARR', sowStart='auto', soilName='auto',\
                         mass='1000.0', cnr='80.0', cpr='', \
                         standing_fraction='0.0', automatic_irrigation='on', \
-                        asw_depth='600', crit_fr_asw='0.95'):
+                        asw_depth='600', crit_fr_asw='0.95', irrigation_efficiency='1',\
+                        irrigation_allocation='off', allocation='0',\
+                        density='8', depth='30', cultivar='usa_18leaf', row_spacing='760'):
     '''
     Saves an apsimRegions configuration file.
     
@@ -81,6 +85,10 @@ def create_config_file(configPath, gridLutPath, metFileDir, \
         path to grid lookup table
     metFileDir : string
         directory where metfiles are located
+    apsimModelDir : string
+        (optional) directory where Apsim is installed
+    soilDatapath : string
+        (optional) path to soil data
     resolution : int or string
         (optional) resolution of simulation
     crop : string
@@ -110,6 +118,20 @@ def create_config_file(configPath, gridLutPath, metFileDir, \
         (optional) depth at which available soil water is calculated
     crit_fr_asw : float or string
         (optional) threshold to irrigate at
+    irrigation_efficiency : float
+        (optional) irrigation efficiency
+    irrigation_allocation : on/off
+        (optional) Allocation of irrigation
+    allocation : float
+        (optional) allocation amount
+    density : int
+        (optional) density to plant crops in meters
+    depth : int
+        (optional) depth to plant crops in mm
+    cultivar : string
+        (optional) type of cultivar to use
+    row_spacing : int
+        (optional) spacing of rows in mm
         
     Returns
     -------
@@ -137,9 +159,9 @@ def create_config_file(configPath, gridLutPath, metFileDir, \
     config.add_section('apsimPreprocessor')
     
     # data directories
-    config.set(pre, 'apsimModelDir', 'C:/Program Files (x86)/Apsim74-r2286/Model')
+    config.set(pre, 'apsimModelDir', apsimModelDir)
     config.set(pre, 'metFileDir', metFileDir)
-    config.set(pre, 'soilDataPath', 'C:/Program Files (x86)/Apsim74-r2286/UserInterface/ToolBoxes/hc27_v1_1.soils')
+    config.set(pre, 'soilDataPath', soilDataPath)
     
     # clock settings
     config.set(pre, 'clock_start', clockStart)
@@ -158,9 +180,9 @@ def create_config_file(configPath, gridLutPath, metFileDir, \
     config.set(pre, 'automatic_irrigation', automatic_irrigation)
     config.set(pre, 'asw_depth', str(asw_depth))
     config.set(pre, 'crit_fr_asw', str(crit_fr_asw))
-    config.set(pre, 'irrigation_efficiency', '1')
-    config.set(pre, 'irrigation_allocation', 'off')
-    config.set(pre, 'allocation', '0')
+    config.set(pre, 'irrigation_efficiency', str(irrigation_efficiency))
+    config.set(pre, 'irrigation_allocation', irrigation_allocation)
+    config.set(pre, 'allocation', str(allocation))
     config.set(pre, 'default_no3_conc', '0.0')
     config.set(pre, 'default_nh4_conc', '0.0')
     config.set(pre, 'default_cl_conc', '0.0')
@@ -168,11 +190,11 @@ def create_config_file(configPath, gridLutPath, metFileDir, \
     # management rule: sowing settings
     config.set(pre, 'sow_start', sowStart)
     config.set(pre, 'sow_end', '')
-    config.set(pre, 'density', '8')
-    config.set(pre, 'depth', '30')
-    config.set(pre, 'cultivar', 'usa_18leaf')
+    config.set(pre, 'density', str(density))
+    config.set(pre, 'depth', str(depth))
+    config.set(pre, 'cultivar', cultivar)
     config.set(pre, 'class', 'plant')
-    config.set(pre, 'row_spacing', '760')
+    config.set(pre, 'row_spacing', str(row_spacing))
     
     # management rule: fertilizer settings
     config.set(pre, 'FertAmtCriteria', '50')
@@ -242,6 +264,10 @@ def create_many_config_files(outputDir, factorials, otherArgs={}):
             - sowStart
             - soilName
             - crit_fr_asw
+            - density
+            - depth
+            - cultivar
+            - row_spacing
     otherArgs : dictionary
         (optional) other arguments to change in each factorial run.
         Can have multiple keys, but each key may only have a single value.
@@ -252,7 +278,8 @@ def create_many_config_files(outputDir, factorials, otherArgs={}):
     '''
     
     # set valid arguments for creating config file
-    validArgs = ('resolution','crop','model','sowStart','soilName','crit_fr_asw')
+    validArgs = ('resolution','crop','model','sowStart','soilName','crit_fr_asw',\
+                'density','depth','cultivar','row_spacing')
     
     # go through each key in the **kwargs and save config files
     runs = {}
@@ -277,6 +304,15 @@ def create_many_config_files(outputDir, factorials, otherArgs={}):
                     create_config_file(configPath, soilName=variable, **otherArgs)
                 elif factor == 'crit_fr_asw':
                     create_config_file(configPath, crit_fr_asw=variable, **otherArgs)
+                elif factor == 'density':
+                    create_config_file(configPath, density=variable, **otherArgs)
+                elif factor == 'depth':
+                    create_config_file(configPath, depth=variable, **otherArgs)
+                elif factor == 'cultivar':
+                    create_config_file(configPath, cultivar=variable, **otherArgs)
+                elif factor == 'row_spacing':
+                    create_config_file(configPath, row_spacing=variable, **otherArgs)
+                
         else:
             print '*** Warning: key "{0}" not a valid argument. Check spelling.'.format(key)
             continue
