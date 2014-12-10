@@ -73,7 +73,8 @@ def create_config_file(configPath, gridLutPath, metFileDir, \
                         standing_fraction='0.0', automatic_irrigation='on', \
                         asw_depth='600', crit_fr_asw='0.95', irrigation_efficiency='1',\
                         irrigation_allocation='off', allocation='0',\
-                        density='8', depth='30', cultivar='usa_18leaf', row_spacing='760'):
+                        density='8', depth='30', cultivar='usa_18leaf', row_spacing='760',\
+                        outputVariables='mm/dd/yyyy as date, yield, biomass, lai, rain, mint, maxt, radn, irr_fasw'):
     '''
     Saves an apsimRegions configuration file.
     
@@ -132,6 +133,8 @@ def create_config_file(configPath, gridLutPath, metFileDir, \
         (optional) type of cultivar to use
     row_spacing : int
         (optional) spacing of rows in mm
+    outputVariables : string
+        (optional) APSIM variables to output, separated by commas
         
     Returns
     -------
@@ -207,15 +210,7 @@ def create_config_file(configPath, gridLutPath, metFileDir, \
     config.set(pre, 'harvest_date', 'auto')
     
     # output settings
-    config.set(pre, 'outputVariables', '''mm/dd/yyyy as date,
-                         yield,
-                         biomass,
-                         lai,
-                         rain,
-                         mint,
-                         maxt,
-                         radn,
-                         irr_fasw''')
+    config.set(pre, 'outputVariables', outputVariables)
     config.set(pre, 'outputEvents', 'end_day')
     
     # tracker settings
