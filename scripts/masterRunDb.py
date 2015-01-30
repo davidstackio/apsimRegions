@@ -190,12 +190,14 @@ def _get_yearly_yield(pointDailyData):
                                    
     return yearlyYieldData
     
-def _get_avg_data(pointDailyData, harvestDates, sowDate):
+def _get_avg_data(apsimDbConn, pointDailyData, harvestDates, sowDate):
     '''
     Determines seasonal averages for data.
     
     Parameters
     ----------
+    apsimDbConn : sqlite connection object
+        connection to database
     dailyData : pandas dataframe
         daily data values, indexed by date
     harvestDates : pandas dataframe
@@ -213,41 +215,36 @@ def _get_avg_data(pointDailyData, harvestDates, sowDate):
     # convert sowDate to correct format
     sowDate = strptime(sowDate,'%d-%b')
     
-    rainAvgs = {}
-    mintAvgs = {}
-    maxtAvgs = {}
-    radnAvgs = {}
-    irrFaswAvgs = {}
-    for year in years:
-        harvestDate = harvestDates[year]
-        
-        # check if harvestDate is a string
-        if type(harvestDate) == type(''):
-            rng = pandas.date_range('{0}/{1}/{2}'.format(sowDate.tm_mon, sowDate.tm_mday, year), harvestDate)
-            
-            # get the avg values and add to appropriate dictionary
-            pointDailyDataMeans = pointDailyData.ix[rng].mean()
-            rainAvgs[year] = pointDailyDataMeans['rain']
-            mintAvgs[year] = pointDailyDataMeans['mint']
-            maxtAvgs[year] = pointDailyDataMeans['maxt']
-            radnAvgs[year] = pointDailyDataMeans['radn']
-            irrFaswAvgs[year] = pointDailyDataMeans['irr_fasw']
-        else: # if harvestDate is not a string, set as NaN
-            rainAvgs[year] = np.nan
-            mintAvgs[year] = np.nan
-            maxtAvgs[year] = np.nan
-            radnAvgs[year] = np.nan
-            irrFaswAvgs[year] = np.nan
+    # read data from the outputFields table
+    with apsimDbConn:
+        outputFields = psql.read_frame("SELECT * FROM outputFields;", apsimDbConn)
+    outputFields = list(outputFields['name'])
+    outputFields.remove('date')
+    outputFields.remove('yield')
     
-    yearlyAvgData = pandas.DataFrame({'rain':rainAvgs,
-                                   'mint':mintAvgs,
-                                   'maxt':maxtAvgs,
-                                   'radn':radnAvgs,
-                                   'irr_fasw':irrFaswAvgs})
+    yearlyAvgData = pandas.DataFrame({})
+    for field in outputFields:
+        dataAvgs = {}
+        for year in years:
+            harvestDate = harvestDates[year]
+            
+            # check if harvestDate is a string
+            if type(harvestDate) == type(''):
+                rng = pandas.date_range('{0}/{1}/{2}'.format(sowDate.tm_mon, sowDate.tm_mday, year), harvestDate)
+                
+                # get the avg values and add to dataAvgs dictionary
+                pointDailyDataMean = pointDailyData[field].ix[rng].mean()
+                dataAvgs[year] = pointDailyDataMean
+            else: # if harvestDate is not a string, set as NaN
+                dataAvgs[year] = np.nan
+
+        #print dataAvgs
+        yearlyAvgData[field] = pandas.Series(dataAvgs)
+        #print yearlyAvgData[field].head()
                                    
     return yearlyAvgData
  
-def _get_db_info(apsimDbConn, maxChunksize=2000000):
+def _get_db_info(apsimDbConn, maxChunksize=1500000):
     '''
     Gathers information from the database.
     
@@ -303,9 +300,13 @@ def _read_apsim_db(apsimDbConn, start, chunksize):
     A dataframe of daily data.
     '''
     with apsimDbConn:
+        # read data from the outputFields table
+        outputFields = psql.read_frame("SELECT * FROM outputFields;", apsimDbConn)
+        outputFields = list(outputFields['name'])
+        outputFields = ', '.join(outputFields)
         
         # read main data
-        sql = "SELECT point_id, date, yield, rain, mint, maxt, radn, irr_fasw FROM apsimOutput LIMIT {0}, {1}".format(start, chunksize)
+        sql = "SELECT point_id, {outputFields} FROM apsimOutput LIMIT {start}, {chunksize}".format(outputFields=outputFields, start=start, chunksize=chunksize)
         dailyData = pandas.io.sql.read_frame(sql, apsimDbConn)
     
     return dailyData
@@ -366,7 +367,7 @@ def _apsim_output(apsimDbPath, sowDates):
         
         # get yearly average data
         harvestDates = yearlyYieldData['harvest_date']
-        yearlyAvgData = _get_avg_data(pointDailyData, harvestDates, sowDate)
+        yearlyAvgData = _get_avg_data(apsimDbConn, pointDailyData, harvestDates, sowDate)
         
         # join yield and avg data, and make pretty
         yearlyData = yearlyYieldData.join(yearlyAvgData)
@@ -459,11 +460,11 @@ def update_output_fields_table(masterDbConn, runPath):
     apsimDbPath = os.path.join(runPath, 'data', 'apsimData.sqlite')
     
     # open run database
-    runDbConn = lite.connect(apsimDbPath)
+    apsimDbConn = lite.connect(apsimDbPath)
     
-    with runDbConn:
-        # read data from the apsimOutput table
-        outputFields = psql.read_frame("SELECT * FROM outputFields;", runDbConn)
+    with apsimDbConn:
+        # read data from the outputFields table
+        outputFields = psql.read_frame("SELECT * FROM outputFields;", apsimDbConn)
         
     with masterDbConn:
         # write outputFields to master database
