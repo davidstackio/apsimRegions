@@ -153,16 +153,16 @@ def _get_field_type(field):
     '''
     
     realFields = ('yield', 'biomass', 'mint', 'maxt', 'rain', 'radn', 'lai',
-                  'irr_fasw')
+                  'irr_fasw', 'irrigation')
     textFields = ('Date')
     
     if field in realFields:
-        fieldType = 'real'
+        fieldType = 'REAL'
     elif field in textFields:
-        fieldType = 'text'
+        fieldType = 'TEXT'
     else:
         # set default field type to nothing (not to be confused with NULL)
-        # this should allow uknown fields to be added without issue
+        # this should allow unknown fields to be added without issue
         fieldType = ''
     
     return fieldType
