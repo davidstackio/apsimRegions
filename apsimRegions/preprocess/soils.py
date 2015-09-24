@@ -165,7 +165,7 @@ def add_soil(element, soilDict):
   _layer_values(soil_crop_et, 'KL', soil.water.soilCrop.kl)
   _layer_values(soil_crop_et, 'XF', soil.water.soilCrop.xf)
 
-  soil_water_et = ET.SubElement(soil_et, 'SoilWat')
+  soil_water_et = ET.SubElement(soil_et, 'SoilWater')
   ET.SubElement(soil_water_et, 'SummerCona').text = str(soil.soilWater.summerCona)
   ET.SubElement(soil_water_et, 'SummerU').text = str(soil.soilWater.summerU)
   ET.SubElement(soil_water_et, 'SummerDate').text = soil.soilWater.summerDate

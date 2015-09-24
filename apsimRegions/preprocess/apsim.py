@@ -78,15 +78,15 @@ def new_folder(element, name='', shortcut=None):
 def new_soil(element, crop, soilName=None, shortcut=None):
     '''Creates a new soil.'''
     if shortcut == None:
-        soil = ET.SubElement(element, 'soil', name=soilName)
+        soil = ET.SubElement(element, 'Soil', name=soilName)
     else:
-        soil = ET.SubElement(element, 'soil', name=soilName, shortcut=shortcut)
-        ET.SubElement(soil, 'InitWater', name='Initial water', shortcut=shortcut+'/Initial water')
+        soil = ET.SubElement(element, 'Soil', name=soilName, shortcut=shortcut)
+        ET.SubElement(soil, 'InitialWater', name='Initial water', shortcut=shortcut+'/Initial water')
 
         water = ET.SubElement(soil, 'Water', shortcut=shortcut+'/Water')
         ET.SubElement(water, 'SoilCrop', name=crop, shortcut=shortcut+'/Water/'+crop)
 
-        ET.SubElement(soil, 'SoilWat', shortcut=shortcut+'/SoilWat')
+        ET.SubElement(soil, 'SoilWater', shortcut=shortcut+'/SoilWater')
         ET.SubElement(soil, 'SoilOrganicMatter', shortcut=shortcut+'/SoilOrganicMatter')
         ET.SubElement(soil, 'Analysis', shortcut=shortcut+'/Analysis')
         ET.SubElement(soil, 'Sample', name='Initial nitrogen', shortcut=shortcut+'/Initial nitrogen')
