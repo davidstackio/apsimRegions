@@ -177,6 +177,7 @@ def add_soil(element, soilDict):
   ET.SubElement(soil_water_et, 'Salb').text = str(soil.soilWater.salb)
   ET.SubElement(soil_water_et, 'CN2Bare').text = str(soil.soilWater.cn2Bare)
   ET.SubElement(soil_water_et, 'CNRed').text = str(soil.soilWater.cnRed)
+  ET.SubElement(soil_water_et, 'CNCov').text = str(soil.soilWater.cnCov)
   ET.SubElement(soil_water_et, 'Slope').text = soil.soilWater.slope
   ET.SubElement(soil_water_et, 'DischargeWidth').text = soil.soilWater.dischargeWidth
   ET.SubElement(soil_water_et, 'CatchmentArea').text = soil.soilWater.catchmentArea
