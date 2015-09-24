@@ -80,8 +80,8 @@ class SoilOrganicMatter(object):
     self.enrACoeff = 7.4
     self.enrBCoeff = 0.2
     self.oc = []
-    self.fBiom = []
-    self.fInert = []
+    self.fbiom = []
+    self.finert = []
     self.ocUnits = 'Total'
 
 
@@ -115,24 +115,31 @@ class Soil(object):
     self.yearOfSampling = 0
     self.initalWater = InitialWater()
     self.water = Water()
-    self.water.bd = [1.5331734, 1.5331734, 1.50929955, 1.5457662, 1.5483897] # TODO: make dynamic 5
-    self.water.ll15 = [0.19327, 0.19327, 0.196545, 0.211165, 0.210638333333] # TODO: make dynamic 7
-    self.water.dul = [0.32025, 0.32025, 0.322485, 0.321115, 0.320948333333] # TODO: make dynamic 6
+    self.water.bd = []
+    self.water.ll15 = []
+    self.water.dul = []
     self.soilWater = SoilWater()
-    self.soilWater.swcon = [0.19, 0.15, 0.17, 0.22, 0.22]  # TODO: make dynamic 1
+    self.soilWater.swcon = []
     self.soilOrganicMatter = SoilOrganicMatter()
-    self.soilOrganicMatter.oc = [2.47354651163, 2.47354651163, 2.19840116279, 1.30770348837, 1.28580426357] # TODO: make dynamic 2
-    self.soilOrganicMatter.fBiom = [0.035, 0.035, 0.024, 0.018, 0.01] # TODO: make dynamic 3
-    self.soilOrganicMatter.fInert = [0.8, 0.82, 0.85, 0.95, 0.986] # TODO: make dynamic 4
+    self.soilOrganicMatter.oc = []
+    self.soilOrganicMatter.fbiom = []
+    self.soilOrganicMatter.finert = []
     self.analysis = Analysis()
     self.sample = Sample()
 
 
-def create_soils(doc, filename, outputFileDir):
+def add_soil(element, soilDict):
   soil = Soil()
-  soil.name = '1'
-  soil.thickness = [100, 100, 300, 500, 1000]
-  soil_et = ET.SubElement(doc, 'soil', name=soil.name)
+  soil.name = soilDict['name']
+  soil.thickness = soilDict['thickness']
+  soil.soilWater.swcon = soilDict['SWCON']
+  soil.soilOrganicMatter.oc = soilDict['OC']
+  soil.soilOrganicMatter.fbiom = soilDict['FBIOM']
+  soil.soilOrganicMatter.finert = soilDict['FINERT']
+  soil.water.bd = soilDict['BD']
+  soil.water.dul = soilDict['DUL']
+  soil.water.ll15 = soilDict['LL15']
+  soil_et = ET.SubElement(element, 'Soil', name=soil.name)
   ET.SubElement(soil_et, 'RecordNumber').text = str(soil.recordNumber)
   ET.SubElement(soil_et, 'Latitude').text = str(soil.latitude)
   ET.SubElement(soil_et, 'Longitude').text = str(soil.longitude)
@@ -185,8 +192,8 @@ def create_soils(doc, filename, outputFileDir):
   ET.SubElement(soil_om_et, 'EnrBCoeff').text = str(soil.soilOrganicMatter.enrBCoeff)
   _layer_values(soil_om_et, 'Thickness', soil.thickness)
   _layer_values(soil_om_et, 'OC', soil.soilOrganicMatter.oc)
-  _layer_values(soil_om_et, 'FBiom', soil.soilOrganicMatter.fBiom)
-  _layer_values(soil_om_et, 'FInert', soil.soilOrganicMatter.fInert)
+  _layer_values(soil_om_et, 'FBiom', soil.soilOrganicMatter.fbiom)
+  _layer_values(soil_om_et, 'FInert', soil.soilOrganicMatter.finert)
   ET.SubElement(soil_om_et, 'OCUnits').text = str(soil.soilOrganicMatter.ocUnits)
   
   analysis_et = ET.SubElement(soil_et, 'Analysis')
@@ -208,7 +215,7 @@ def create_soils(doc, filename, outputFileDir):
   ET.SubElement(sample_et, 'PHUnits').text = soil.sample.phUnits
 
 
-def _layer_values(element, name, layer_list, data_type='Double'):
+def _layer_values(element, name, layer_list, data_type='double'):
   layer_et = ET.SubElement(element, name)
   for layer in layer_list:
     ET.SubElement(layer_et, data_type).text = str(layer)
