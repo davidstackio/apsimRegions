@@ -198,7 +198,7 @@ def add_soil(element, soilDict):
   
   analysis_et = ET.SubElement(soil_et, 'Analysis')
   _layer_values(analysis_et, 'Thickness', soil.thickness)
-  _layer_values(analysis_et, 'Texture', soil.analysis.texture)
+  _layer_values(analysis_et, 'Texture', soil.analysis.texture, 'string')
   _layer_values(analysis_et, 'MunsellColour', soil.analysis.munsellColour)
   _layer_values(analysis_et, 'PH', soil.analysis.ph)
   ET.SubElement(soil_om_et, 'PHUnits').text = str(soil.analysis.phUnits)
