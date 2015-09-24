@@ -145,6 +145,8 @@ def select_soil(gridpoint, crop, element, shortcutroot, soilLut, soilName):
     ''' Chooses soil to use based on grid cell.'''
     if soilName == 'auto':
         soilName = 'HCGEN' + str(soilLut[gridpoint]).zfill(4)
+    elif soilName == 'text':
+        soilName = soilLut[gridpoint]
     shortcut = shortcutroot + soilName
     soil = apsim.new_soil(element, crop, soilName, shortcut)
     return soil
