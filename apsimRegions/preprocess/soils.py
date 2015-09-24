@@ -219,17 +219,3 @@ def _layer_values(element, name, layer_list, data_type='double'):
   layer_et = ET.SubElement(element, name)
   for layer in layer_list:
     ET.SubElement(layer_et, data_type).text = str(layer)
-
-
-def main():
-  from apsimRegions.preprocess.apsim import new_document, save_file
-  doc = new_document(name='soils', version='36') # TODO: pull VERSION from to be made config.py as constant
-  filename = 'soils.soils'
-  outputFileDir = 'C:/Users/David/Documents/farmlogs'
-  create_soils(doc, filename, outputFileDir)
-  save_file(doc, filename, outputFileDir)
-
-
-# Run main() if module is run as a program
-if __name__ == '__main__':
-  main()
