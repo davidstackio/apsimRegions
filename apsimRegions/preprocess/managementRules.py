@@ -153,7 +153,39 @@ def cotton_fixed_date_sowing_rule(folder,crop,name='Cotton fixed date sowing rul
     else:
         rule = ET.SubElement(folder, 'manager', name=name, shortcut=shortcut+'/'+name)
     return rule
-    
+
+
+def fertiliseOnFixedDate_rule(folder, name='Fertilise on a fixed date', shortcut=None, fert_date='dd-mmm', fert_criteria='1000', fertmodule='', fert_amount='150', fert_type='urea_N', occurrence='start_of_day'):
+    ''' Rule for fertilising on fixed date.'''
+
+    if shortcut == None:
+        rule = ET.SubElement(folder, 'manager', name=name)
+
+        ui = ET.SubElement(rule, 'ui')
+        ET.SubElement(ui, 'category', type='category', description='When should fertiliser be applied')
+        ET.SubElement(ui, 'fert_date', type='ddmmmdate', description='Enter fertiliser date (dd-mmm) : ').text = fert_date
+        ET.SubElement(ui, 'fert_criteria', type='text', description="Don't add fertiliser if N in top 2 layers exceeds (kg/ha) : ").text = fert_criteria
+
+        ET.SubElement(ui, 'category', type='category', description='Fertiliser application details')
+        ET.SubElement(ui, 'fertmodule', type='modulename', description='Module used to apply the fertiliser : ').text = fertmodule
+        ET.SubElement(ui, 'fert_amount', type='text', description='Amount of fertiliser to apply (kg/ha) : ').text = fert_amount
+        ET.SubElement(ui, 'fert_type', type='list', listvalues="NO3_N, NH4_N, NH4NO3, urea_N, urea_no3, urea, nh4so4_n, rock_p, banded_p, broadcast_p", description = 'Fertiliser type : ').text = fert_type
+
+        script = ET.SubElement(rule, 'script')
+        ET.SubElement(script, 'text').text = '''
+        if (today = date('[fert_date]') then
+            N_topsoil = no3(1) + nh4(1) + no3(2) + nh4(2)
+            if (N_topsoil < [fert_criteria]) then
+               [fertmodule] apply amount = [fert_amount] (kg/ha), depth = 50 (mm), type = [fert_type] ()
+            endif
+         endif 
+        '''
+        ET.SubElement(script, 'event').text = occurrence
+    else:
+        rule = ET.SubElement(folder, 'manager', name=name, shortcut=shortcut+'/'+name)
+    return rule
+
+
 def sowingFertiliser_rule(folder, name='Sowing fertiliser', shortcut=None, eventname='sowing', fertiliser='fertiliser', fert_amount_sow='150', fert_type_sow='urea_N'):
     '''Rule for when to apply fertilizer.'''
     
