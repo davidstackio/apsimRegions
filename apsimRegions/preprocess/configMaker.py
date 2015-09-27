@@ -64,8 +64,8 @@ def _setup_run_dir(outputPath):
     return configPath, run
     
 def create_config_file(configPath, gridLutPath, metFileDir, \
-                        apsimModelDir='C:/Program Files (x86)/Apsim74-r2286/Model',\
-                        soilDataPath='C:/Program Files (x86)/Apsim74-r2286/UserInterface/ToolBoxes/hc27_v1_1.soils',\
+                        apsimModelDir='C:/Program Files (x86)/Apsim77-r3615/Model',\
+                        soilDataPath='C:/Program Files (x86)/Apsim77-r3615/UserInterface/ToolBoxes/hc27_v1_1.soils',\
                         resolution='32', crop='maize', \
                         clockStart='1/1/1991', clockEnd='31/12/2011', \
                         model='NARR', sowStart='auto', soilName='auto',\

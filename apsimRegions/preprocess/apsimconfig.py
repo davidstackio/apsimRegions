@@ -12,7 +12,7 @@ import managementRules as manager
     
 def setup_project(projectName):
     '''Sets up project options for all simulations.'''
-    version = '29'
+    version = '36'
     doc = apsim.new_document(version, projectName)
     return doc
 
