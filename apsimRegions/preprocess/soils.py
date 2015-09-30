@@ -26,7 +26,7 @@ def add_soils(element, filename):
 
 
 class InitialWater(object):
-  def __init__(self):
+  def __init__(self, soilDict):
     self.fractionFull = 0.8
     self.depthWetSoil = 'NaN'
     self.percentMethod = 'FilledFromTop'
@@ -34,7 +34,7 @@ class InitialWater(object):
 
 
 class SoilCrop(object):
-  def __init__(self):
+  def __init__(self, soilDict):
     self.name = 'maize'
     self.ll = [0.19327, 0.19327, 0.196545, 0.211165, 0.210638333333]
     self.kl = [0.08, 0.08, 0.08, 0.06, 0.05]
@@ -42,17 +42,17 @@ class SoilCrop(object):
 
 
 class Water(object):
-  def __init__(self):
-    self.bd = []
+  def __init__(self, soilDict):
+    self.bd = soilDict['BD'] if soilDict else []
     self.airDry = [0.0644233333333, 0.19327, 0.196545, 0.211165, 0.210638333333]
-    self.ll15 = []
-    self.dul = []
+    self.ll15 = soilDict['LL15'] if soilDict else []
+    self.dul = soilDict['DUL'] if soilDict else []
     self.sat = [0.4156, 0.4156, 0.4247, 0.4108, 0.4098]
-    self.soilCrop = SoilCrop()
+    self.soilCrop = SoilCrop(soilDict)
 
 
 class SoilWater(object):
-  def __init__(self):
+  def __init__(self, soilDict):
     self.summerCona = 3
     self.summerU = 6
     self.summerDate = '1-Apr'
@@ -69,24 +69,24 @@ class SoilWater(object):
     self.dischargeWidth = 'NaN'
     self.catchmentArea = 'NaN'
     self.maxPond = 'NaN'
-    self.swcon = []
+    self.swcon = soilDict['SWCON'] if soilDict else []
 
 
 class SoilOrganicMatter(object):
-  def __init__(self):
+  def __init__(self, soilDict):
     self.rootCN = 45
     self.rootWt = 1000
     self.soilCN = 12.5
     self.enrACoeff = 7.4
     self.enrBCoeff = 0.2
-    self.oc = []
-    self.fbiom = []
-    self.finert = []
+    self.oc = soilDict['OC'] if soilDict else []
+    self.fbiom = soilDict['FBIOM'] if soilDict else []
+    self.finert = soilDict['FINERT'] if soilDict else []
     self.ocUnits = 'Total'
 
 
 class Analysis(object):
-  def __init__(self):
+  def __init__(self, soilDict):
     self.texture = ['Silty clay loam'] * 5
     self.munsellColour = ''
     self.ph = [6.739, 6.739, 6.554, 6.785, 6.79033333333]
@@ -95,7 +95,7 @@ class Analysis(object):
 
 
 class Sample(object):
-  def __init__(self):
+  def __init__(self, soilDict):
     self.no3 = [0] * 5
     self.nh4 = [0] * 5
     self.no3Units = 'ppm'
@@ -106,39 +106,23 @@ class Sample(object):
 
 
 class Soil(object):
-  def __init__(self):
-    self.name = ''
-    self.thickness = []
+  def __init__(self, soilDict=None):
+    self.name = soilDict['name'] if soilDict else ''
+    self.thickness = soilDict['thickness'] if soilDict else []
     self.recordNumber = 0
     self.latitude = 0
     self.longitude = 0
     self.yearOfSampling = 0
-    self.initalWater = InitialWater()
-    self.water = Water()
-    self.water.bd = []
-    self.water.ll15 = []
-    self.water.dul = []
-    self.soilWater = SoilWater()
-    self.soilWater.swcon = []
-    self.soilOrganicMatter = SoilOrganicMatter()
-    self.soilOrganicMatter.oc = []
-    self.soilOrganicMatter.fbiom = []
-    self.soilOrganicMatter.finert = []
-    self.analysis = Analysis()
-    self.sample = Sample()
+    self.initalWater = InitialWater(soilDict)
+    self.water = Water(soilDict)
+    self.soilWater = SoilWater(soilDict)
+    self.soilOrganicMatter = SoilOrganicMatter(soilDict)
+    self.analysis = Analysis(soilDict)
+    self.sample = Sample(soilDict)
 
 
-def add_soil(element, soilDict):
-  soil = Soil()
-  soil.name = soilDict['name']
-  soil.thickness = soilDict['thickness']
-  soil.soilWater.swcon = soilDict['SWCON']
-  soil.soilOrganicMatter.oc = soilDict['OC']
-  soil.soilOrganicMatter.fbiom = soilDict['FBIOM']
-  soil.soilOrganicMatter.finert = soilDict['FINERT']
-  soil.water.bd = soilDict['BD']
-  soil.water.dul = soilDict['DUL']
-  soil.water.ll15 = soilDict['LL15']
+def add_soil(element, soilDict=None):
+  soil = Soil(soilDict)
   soil_et = ET.SubElement(element, 'Soil', name=soil.name)
   ET.SubElement(soil_et, 'RecordNumber').text = str(soil.recordNumber)
   ET.SubElement(soil_et, 'Latitude').text = str(soil.latitude)
